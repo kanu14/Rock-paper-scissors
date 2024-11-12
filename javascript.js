@@ -1,5 +1,6 @@
 // Get computer choice randomly choosing r, p, or s
 // Get user choice
+// declare score variables to keep track
 // Play the game
 
 
@@ -23,3 +24,29 @@ function getHumanChoice() {
         alert('enter again');
     }
 }
+
+let humanScore = 0;
+let compScore = 0;
+
+function playRound(humanChoice, compChoice) {
+    if (humanChoice == 'rock' && compChoice == 'scissors' || 
+    humanChoice == 'scissors' && compChoice == 'paper' ||
+    humanChoice == 'paper' && compChoice == 'rock') {
+        console.log('You win! ' + humanChoice + ' beats ' + compChoice +'!');
+        humanScore++;
+    } else if (compChoice == 'rock' && humanChoice == 'scissors' || 
+    compChoice == 'scissors' && humanChoice == 'paper' ||
+    compChoice == 'paper' && humanChoice == 'rock') {
+        console.log('You lose! ' + compChoice + ' beats ' + humanChoice +'!');
+        compScore++;
+        }
+    else return ('draw!');
+}
+
+const humanSelection = getHumanChoice();
+const compSelection = getComputerChoice();
+
+playRound(humanSelection, compSelection);
+
+console.log('Human ' + humanSelection +': '+ humanScore);
+console.log('Comp ' + compSelection +': '+ compScore);
