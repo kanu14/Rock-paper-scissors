@@ -27,6 +27,7 @@ function getHumanChoice() {
 
 let humanScore = 0;
 let compScore = 0;
+// let n = 0;
 
 function playRound(humanChoice, compChoice) {
     if (humanChoice == 'rock' && compChoice == 'scissors' || 
@@ -40,13 +41,29 @@ function playRound(humanChoice, compChoice) {
         console.log('You lose! ' + compChoice + ' beats ' + humanChoice +'!');
         compScore++;
         }
-    else return ('draw!');
+    else {
+        console.log('draw!');
+        // n++;
+        }
 }
 
-const humanSelection = getHumanChoice();
-const compSelection = getComputerChoice();
+function playGame () {
+    for (let i = 0; i < 6; i++) {
 
-playRound(humanSelection, compSelection);
+        if (humanScore == 3 || compScore == 3){
+            console.log('Game ended!')
+        } else {
+            const humanSelection = getHumanChoice();
+            const compSelection = getComputerChoice();
+            playRound(humanSelection, compSelection);
+            console.log('Human ' + humanSelection +': '+ humanScore);
+            console.log('Comp ' + compSelection +': '+ compScore);
+        }
+    }
 
-console.log('Human ' + humanSelection +': '+ humanScore);
-console.log('Comp ' + compSelection +': '+ compScore);
+}
+
+playGame();
+
+// console.log('Human ' + humanSelection +': '+ humanScore);
+// console.log('Comp ' + compSelection +': '+ compScore);
