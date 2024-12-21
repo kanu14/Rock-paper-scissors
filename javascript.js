@@ -6,6 +6,7 @@
     const buttons = document.querySelectorAll('button');
 
     let humanChoice = '';
+    let compChoice = '';
     let humanScore = 0;
     let compScore = 0;
         
@@ -30,12 +31,23 @@
                 humanChoice = button.textContent.toLowerCase(); 
                 console.log('User choice: ' + humanChoice);
                 
-                const compChoice = getComputerChoice();
+                let compChoice = getComputerChoice();
                 console.log('Comp choice: ' + compChoice);
                 // Call playRound immediately after getting the choice
-                playRound(humanChoice, getComputerChoice()); 
+                playRound(humanChoice, compChoice); 
                 console.log('Human ' + humanChoice + ': ' + humanScore);
-                console.log('Computer ' + getComputerChoice() + ': ' + compScore);
+                console.log('Computer ' + compChoice + ': ' + compScore);
+                
+                const oneScore = document.querySelector('#human');
+                const twoScore = document.querySelector('#cpu');
+                oneScore.textContent = humanScore;
+                twoScore.textContent = compScore;
+
+                if (humanScore == 5 || compScore == 5) {
+                    const endGame = document.querySelector('#end');
+                    endGame.textContent = 'End of Game!';
+                    
+                }
             });
         });
     }
@@ -54,31 +66,15 @@
             console.log('You lose! ' + compChoice + ' beats ' + humanChoice +'!');
             compScore++;
         }
-        
-        // if (humanChoice == 'rock' && compChoice == 'scissors' || 
-        //     humanChoice == 'scissors' && compChoice == 'paper' ||
-        //     humanChoice == 'paper' && compChoice == 'rock') {
-        //     console.log('You win! ' + humanChoice + ' beats ' + compChoice +'!');
-        //     humanScore++;
-        // } else if (compChoice == 'rock' && humanChoice == 'scissors' || 
-        //         compChoice == 'scissors' && humanChoice == 'paper' ||
-        //         compChoice == 'paper' && humanChoice == 'rock') {
-        //     console.log('You lose! ' + compChoice + ' beats ' + humanChoice +'!');
-        //     compScore++;
-        //     }
-        // else {
-        //     console.log('draw!');
-        // }
+     
     }
 
     function playGame () {
         console.log('Make your selection');
         getHumanChoice();
-
-        
+        humanChoice = '';
+        compChoice = '';
     }
-
-
 
     playGame();
 
